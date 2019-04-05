@@ -1,0 +1,10 @@
+.has-error {
+  border-color: #f5222d;
+}
+.has-error:hover {
+  border-color: #f5222d;
+}
+.error-msg {
+  color:  #f5222d;
+  margin: 5px;
+}
