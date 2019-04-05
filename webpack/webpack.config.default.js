@@ -14,7 +14,7 @@ var webpackConfig = {
         path: resolve(dist)
     },
     resolve: {
-        extensions: ['.ts', '.tsx', '.js', '.json', 'sass', 'css', 'scss','less'],
+        extensions: ['.ts', '.tsx', '.js', '.json', '.json5', 'sass', 'css', 'scss','less'],
         modules: ["node_modules", "src", "scripts", "assets"]
     },
     plugins: [],
@@ -30,7 +30,10 @@ var webpackConfig = {
                 options: {
                     babelrc: true
                 }
-            }, {
+            },{
+                test: /\.json5$/,
+                loader: 'json5-loader',
+            },{
                 test: /\.(sa|sc|c)ss$/,
                 use: [{
                     loader: minicssLoader,
@@ -115,7 +118,18 @@ export default()=>{
             to: resolve(`${dist}/${lib.dist}`)
         });
     });
-    webpackConfig.plugins.push(new CopyWebpackPlugin(copyFiles));
+    copyFiles.push({
+        from : resolve("src/assets/locales/*/*"),
+        to : resolve(`${dist}/locales/`),
+        transformPath : function(targePath, absolutePath) {
+            var newPath = targePath.replace('src\\assets\\locales\\','').replace('src/assets/locales/','');
+            //console.log(`targePath:${targePath} newPath:${newPath} absolutePath:${absolutePath}`)
+            return Promise.resolve(newPath);
+        }
+    });
+    webpackConfig.plugins.push(new CopyWebpackPlugin(copyFiles, {
+         //logLevel: 'debug'
+    }));
 
     return webpackConfig;
 }

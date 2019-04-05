@@ -52,9 +52,9 @@ export default {
         },
         "antd" : {
             var : "antd",
-            src : "node_modules/antd/dist/antd.js",
+            src : "node_modules/antd/dist/antd-with-locales.js",
             dist : "static/antd.js",
-            href : "https://cdnjs.cloudflare.com/ajax/libs/antd/3.16.1/antd.min.js",
+            href : "https://cdnjs.cloudflare.com/ajax/libs/antd/3.16.1/antd-with-locales.js",
         }
     }
 }

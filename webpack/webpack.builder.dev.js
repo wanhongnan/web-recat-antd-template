@@ -1,8 +1,10 @@
 import { HotModuleReplacementPlugin } from "webpack";
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
+import CleanWebpackPlugin from 'clean-webpack-plugin';
 import PageSettings from "./pages";
 import { resolve } from "./utils";
+const dist = "dist";
 
 export default (webpackConfig) => {
     webpackConfig.output = {
@@ -15,6 +17,12 @@ export default (webpackConfig) => {
         new HotModuleReplacementPlugin(),
         new MiniCssExtractPlugin({
             filename: "styles/[name].css"
+        })
+    );
+    
+    webpackConfig.plugins.push(
+        new CleanWebpackPlugin(dist, {
+            root: resolve("")
         })
     );
 
