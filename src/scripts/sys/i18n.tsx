@@ -23,15 +23,17 @@ export async function initLanguage(lng:string){
   // init i18next
   // for all options read: https://www.i18next.com/overview/configuration-options
   .init({
-    fallbackLng: [lng],
+    lng: lng,               //language to use (overrides language detection)
+    fallbackLng: 'en_US',   //language to use if translations in user language are not available
     debug: false,
-    ns: ['translation'],
+    ns: ['translation'],    //namespace file,  translation = translation.json , xxx = xxx.json
+    preload: ['en_US','zh_CN'],   //array of languages to preload. Important on serverside to assert translations are loaded before rendering views
 
     interpolation: {
       escapeValue: false, // not needed for react as it escapes by default
     },
+    //LanguageDetector option
     detection : {
-
     },
     //for Backend config
     backend: {
