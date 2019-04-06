@@ -5,10 +5,14 @@
     "type": "git",
     "url": "https://github.com/wanhongnan/typescript-antd-template.git"
   },
+  "main": "main.js",
+  "homepage": ".",
+  "DEV": true,
   "scripts": {
     "start": "webpack-dev-server --mode development --hot --open",
     "dev": "webpack --mode development --display errors-only",
-    "build": "webpack --mode production --display errors-only"
+    "build": "webpack --mode production --display errors-only",
+    "estart": "electron ."
   },
   "dependencies": {
     
