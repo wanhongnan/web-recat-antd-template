@@ -4,10 +4,9 @@ import { Component, Suspense } from "react";
 import React from "react";
 import { withTranslation } from "react-i18next";
 const { LocaleProvider, locales } = (window as any).antd;
-import i18n from 'i18next';
-import { initLanguage, lang, onLanguageChanged } from "./i18n";
+import i18n from "../i18n";
 
-initLanguage("zh_CN");
+i18n.init("zh_CN");
 
 const Loader = () => (
   <div>
@@ -28,12 +27,12 @@ export default class WebcomeLoading extends Component<any,any>{
   
   constructor(props:any){
     super(props);
-    onLanguageChanged(this.langChanged.bind(this));
-    this.state = {lng:lang()};
+    i18n.registChanged(this.langChanged.bind(this));
+    this.state = {lng:i18n.lang()};
   }
 
   langChanged(){
-    this.setState({lng:lang()});
+    this.setState({lng:i18n.lang()});
   }
 
   render(){

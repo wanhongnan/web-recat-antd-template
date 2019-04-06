@@ -6,8 +6,9 @@ import { ReactNodeArray } from "prop-types";
 import { Validator,Required, VComponent, IsAccount } from "utils/Validator";
 import { delay } from "./utils";
 import { withTranslation, Trans } from 'react-i18next';
-import WebcomeLoading from "./sys";
-import { changeLanguage, t } from "./sys/i18n";
+import WebcomeLoading from "utils/WebcomeLoading";
+import i18n from "utils/i18n";
+import 'pages/'
 
 class Panel extends VComponent<any,{loading:boolean}>{
   onLoadingError(err:any){
@@ -18,20 +19,22 @@ class Panel extends VComponent<any,{loading:boolean}>{
   i = 0;
   @Loading()
   async onPost(){
-    //   if(!this.validate())
-    //     return;
+
     this.i ++;
     if(this.i % 2 == 0)
-      await changeLanguage("en_US");
+      await i18n.change("en_US");
     else
-      await changeLanguage("zh_CN");
+      await i18n.change("zh_CN");
+
+    if(!this.validate())
+      return;
   }
 
   @RenderLoading()
   render(){
     return (
       <div>
-        <div>{t('description.part2')}</div>
+        <div>{i18n.t('description.part2')}</div>
         <Row>
           <Col>aaa:</Col>
           <Col>

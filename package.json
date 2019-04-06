@@ -11,6 +11,7 @@
     "build": "webpack --mode production --display errors-only"
   },
   "dependencies": {
+    
     "antd": "^3.16.1",
     "i18next": "^15.0.9",
     "i18next-browser-languagedetector": "^3.0.1",
@@ -36,6 +37,8 @@
     "@types/react": "^16.8.3",
     "@types/react-dom": "^16.8.1",
     "@types/react-fontawesome": "^1.6.4",
+    "@types/react-router": "^4.3.1",
+    "@types/react-router-dom": "^4.3.1",
     "autoprefixer": "^9.4.7",
     "axios": "^0.18.0",
     "babel-loader": "^8.0.4",

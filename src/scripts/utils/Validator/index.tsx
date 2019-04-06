@@ -13,6 +13,8 @@ import IsMobile from "./IsMobile";
 import IsMatch from "./IsMatch";
 import IsIpAddress from "./IsIpAddress";
 
+export type StateLoading = {loading:boolean} 
+
 export class VComponent<PT,ST> extends Component<PT,ST>{
 
   validatorList : Map<string,Validator> = new Map<string,Validator>();
@@ -30,7 +32,7 @@ export class VComponent<PT,ST> extends Component<PT,ST>{
       return;
     }
     this.validatorList.set(key,v);
-    console.log(this.validatorList.keys());
+    //console.log(this.validatorList.keys());
   }
 }
 

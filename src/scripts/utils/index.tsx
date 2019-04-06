@@ -17,3 +17,5 @@ export async function delay(time:number):Promise<any>{
     setTimeout(()=>{reslove()},time);
   });
 }
+
+

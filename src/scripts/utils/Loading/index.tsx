@@ -2,6 +2,7 @@ import React from "react";
 import './style.less'
 
 type onLoadingErrorCallback = (err:any) => void;
+
 /**
  * 注意： 添加 onLoadingError(err:any){} 函数可以处理Loading的错误及异常结果
  * 例：
