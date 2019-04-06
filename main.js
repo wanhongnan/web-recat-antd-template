@@ -1,9 +1,15 @@
 const { app, BrowserWindow } = require('electron');
+const electron = require('electron');
+
 // 浏览器引用
 let window;
+const Menu = electron.Menu;
+
 // 创建浏览器窗口函数
-let createWindow = () => {    
-  // 创建浏览器窗口
+let createWindow = () => {
+    //去掉默认菜单
+    Menu.setApplicationMenu(null)
+    // 创建浏览器窗口
     window = new BrowserWindow({
         width: 800,
         height: 600

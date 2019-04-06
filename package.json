@@ -12,7 +12,8 @@
     "start": "webpack-dev-server --mode development --hot --open",
     "dev": "webpack --mode development --display errors-only",
     "build": "webpack --mode production --display errors-only",
-    "estart": "electron ."
+    "estart": "electron .",
+    "package": "electron-packager . oddsComputer --all --out ./pulish --electron-version 4.1.4"
   },
   "dependencies": {
     
