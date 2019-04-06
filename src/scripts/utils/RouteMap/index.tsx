@@ -12,7 +12,6 @@ export type MapRouteOption = {
 }
 
 var _routes = new Map<string,any>();
-
 export function RouteMap(option:MapRouteOption){
   return  function(target:any) {
     option.component = target;
@@ -23,24 +22,18 @@ export function RouteMap(option:MapRouteOption){
 export function getRenderRoutes(){
   var routes = [];
   for(var props of _routes.values()){
-    routes.push(<Route key={props.path} {...props} />);
+      routes.push(<Route key={props.path} {...props} />);
   }
-  return routes;
+  return (
+    <Switch>
+      {routes}
+    </Switch>
+  );
 }
 
 /**
-render() {
-    return (
-        <Router>
-            <Layout>
-                <Switch>
-                    {getRenderRoutes()}
-                    <Route component={this.getDefaultComponent()} />
-                </Switch>
-            </Layout>
-        </Router>
-    )
-}
+使用:
+<HashRouter>
+  {getRenderRoutes()}
+</HashRouter>
  */
-
- 

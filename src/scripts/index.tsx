@@ -9,6 +9,8 @@ import { withTranslation, Trans } from 'react-i18next';
 import WebcomeLoading from "utils/WebcomeLoading";
 import i18n from "utils/i18n";
 import 'pages/'
+import { HashRouter, Switch, Link, BrowserRouter } from "react-router-dom";
+import { getRenderRoutes } from "utils/RouteMap";
 
 class Panel extends VComponent<any,{loading:boolean}>{
   onLoadingError(err:any){
@@ -47,6 +49,9 @@ class Panel extends VComponent<any,{loading:boolean}>{
           </Col>
         </Row>
         <Button loading={this.state.loading} onClick={this.onPost.bind(this)}>Submit</Button>
+        <HashRouter>
+          {getRenderRoutes()}
+        </HashRouter>
       </div>
     );
   }
