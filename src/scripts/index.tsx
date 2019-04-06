@@ -7,10 +7,10 @@ import { Validator,Required, VComponent, IsAccount } from "utils/Validator";
 import { delay } from "./utils";
 import { withTranslation, Trans } from 'react-i18next';
 import WebcomeLoading from "utils/WebcomeLoading";
-import i18n from "utils/i18n";
+import {i18n} from "utils/i18n";
 import 'pages/'
 import { HashRouter, Switch, Link, BrowserRouter } from "react-router-dom";
-import { getRenderRoutes } from "utils/RouteMap";
+import { SwitchMap } from "utils/RouteMap";
 
 class Panel extends VComponent<any,{loading:boolean}>{
   onLoadingError(err:any){
@@ -50,7 +50,11 @@ class Panel extends VComponent<any,{loading:boolean}>{
         </Row>
         <Button loading={this.state.loading} onClick={this.onPost.bind(this)}>Submit</Button>
         <HashRouter>
-          {getRenderRoutes()}
+          <SwitchMap></SwitchMap>
+          <Link to="/index/abc">A1</Link>
+          <Link to="/index/abc2">A2</Link>
+          <Link to="/index/abc3">A3</Link>
+          <Link to="/index/abc4">A4</Link>
         </HashRouter>
       </div>
     );

@@ -5,7 +5,7 @@ import { initReactI18next } from 'react-i18next';
 var __lng:string = 'en';
 var __callback:Function;
 
-class i18n{
+class __i18n{
 
   lang(){
     return __lng;
@@ -117,6 +117,9 @@ class i18n{
     __callback = callback;
   }
 }
-var _i18n = new i18n();
-export default  _i18n;
+
+var i18n = new __i18n();
+export {
+  i18n
+}
 

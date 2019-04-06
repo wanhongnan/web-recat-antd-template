@@ -12,14 +12,23 @@ export type MapRouteOption = {
 }
 
 var _routes = new Map<string,any>();
-export function RouteMap(option:MapRouteOption){
+export function RouteMap(option:MapRouteOption | string){
   return  function(target:any) {
-    option.component = target;
-    _routes.set(option.path,option);
+
+    if(typeof(option) == "string"){
+      var opt:MapRouteOption = {
+        path: option as string,
+        component: target
+      };
+      _routes.set(opt.path,opt);
+    }else{
+      option.component = target;
+      _routes.set(option.path,option);
+    }
   }
 }
 
-export function getRenderRoutes(){
+const SwitchMap = ()=>{
   var routes = [];
   for(var props of _routes.values()){
       routes.push(<Route key={props.path} {...props} />);
@@ -30,10 +39,26 @@ export function getRenderRoutes(){
     </Switch>
   );
 }
+export {
+  SwitchMap
+};
 
 /**
+@RouteMap({path:"/index/abc"})
+export class Test extends VComponent<any,StateLoading>{
+  render(){
+    return (
+      <div>Test</div>
+    );
+  }
+}
+
 使用:
 <HashRouter>
-  {getRenderRoutes()}
+  <SwitchMap></SwitchMap>
+  <Link to="/index/abc">A1</Link>
+  <Link to="/index/abc2">A2</Link>
+  <Link to="/index/abc3">A3</Link>
+  <Link to="/index/abc4">A4</Link>
 </HashRouter>
  */
