@@ -41,10 +41,7 @@ export default class WebcomeLoading extends Component<any,any>{
       <Suspense fallback={<Loader />}>
           <I18nLoader>
             <LocaleProvider locale={locales[lng]}>
-              <div>
-                <div>{lng}</div>
-                <div>{this.props.children}</div>
-              </div>
+              {this.props.children}
             </LocaleProvider>
           </I18nLoader>
       </Suspense>
