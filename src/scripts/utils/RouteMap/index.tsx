@@ -31,7 +31,7 @@ export function RouteMap(option:MapRouteOption | string){
 const SwitchMap = ()=>{
   var routes = [];
   for(var props of _routes.values()){
-      routes.push(<Route key={props.path} {...props} />);
+      routes.push(<Route key={props.path} {...props} exact />);
   }
   return (
     <Switch>
