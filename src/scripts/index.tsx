@@ -41,9 +41,8 @@ class Panel extends VComponent<any,{loading:boolean}>{
           <Col>aaa:</Col>
           <Col>
             <Validator container={this} id="userName">
-              <Input/>
-              <Required msg="用户名为必填项"/>
-              <IsAccount/>
+              <DatePicker/>
+              <Required/>
             </Validator>
             <DatePicker></DatePicker>
           </Col>
