@@ -16,7 +16,6 @@
     "package": "electron-packager . oddsComputer --all --out ./pulish --electron-version 4.1.4"
   },
   "dependencies": {
-    
     "antd": "^3.16.1",
     "i18next": "^15.0.9",
     "i18next-browser-languagedetector": "^3.0.1",
