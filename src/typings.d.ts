@@ -14,7 +14,7 @@ declare module "react-lazyload"
  * ********************************************************************************************************************************
  */
 
-interface Array<T> {
+interface Array<T extends any> {
     maxBy: { <U = string | number | ICompare<T>>(callback: (value: T, index: number, objs: readonly T[]) => U, defaultValue?: T): T; };
     minBy: { <U = string | number | ICompare<T>>(callback: (value: T, index: number, objs: readonly T[]) => U, defaultValue?: T): T; };
     where: { (predicate: (value: T, index: number, objs: readonly T[]) => boolean): T[]; };
@@ -24,20 +24,37 @@ interface Array<T> {
     select: { <U>(callback: (value: T, index: number, objs: readonly T[]) => U): U[]; };
     distinct: { <U>(callback?: (value: T, index: number, objs: readonly T[]) => U): T[]; };
     rand: { (defaultValue?: T): T; };
-    groupBy: { <U = string | number>(callback: (value: T, index: number, objs: readonly T[]) => U) : Array<Group<U,T[]>> }
+    groupBy: { <U = string | number>(callback: (value: T, index: number, objs: readonly T[]) => U) : Array<KValue<U,T[]>> }
     each: { (callback: (value: T, index: number, objs: readonly T[]) => void): T[]; };
     sortByAsc: { <U = string | number | ICompare<T>>(callback: (value: T) => U, ): T[]; };
     sortByDsc: { <U = string | number | ICompare<T>>(callback: (value: T) => U, ): T[]; };
     clone: { (): T[]; };
     any: { (predicate: (value: T, index: number, objs: readonly T[]) => boolean): boolean; };
     all: { (predicate: (value: T, index: number, objs: readonly T[]) => boolean): boolean; };
+    // collection: {  () :  Collection<T>; } 
+}
+
+// interface Object {
+//     collection() :  Collection<KValue<string,any>>;
+// }
+
+interface Collection<T> extends Iterator<T> {
+    where(predicate: (value: T, index?: number) => boolean):Collection<T>;
+    take(count: number):Collection<T>;
+    skip(count: number):Collection<T>;
+    select<U>(callback: (value: T, index?: number) => U): Collection<U>;
+    toArray():Array<T>;
+    count():number;
+    first(predicate?: (value: T, index?: number) => boolean, defaultValue?: T): T | undefined;
+    last(predicate?: (value: T, index?: number) => boolean, defaultValue?: T): T | undefined;
+    expend<U extends any>(callback: (value: T, index: number) => Collection<U>) : Collection<U>;
 }
 
 interface ICompare<T>{
     compare(value:T):number
 }
 
-interface Group<K,V>{
+interface KValue<K,V>{
     key: K;
     value: V;
 }

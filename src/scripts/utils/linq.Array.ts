@@ -10,6 +10,8 @@
  * ********************************************************************************************************************************
  */
 
+import { Collection } from "./linq.Collection";
+
 Array.prototype.select = Array.prototype.map;
 Array.prototype.where = Array.prototype.filter;
 Array.prototype.first = function(predicate?, defaultValue?):any{
@@ -205,6 +207,26 @@ Array.prototype.clone = function(): any[]{
     return arrS;
 }
 
+// Array.prototype.collection = function(): Collection<any>{
+//     var arr = this as Array<any>;
+//     return new Collection(arr.values());
+// }
+
+// Object.prototype.collection =   function():  Collection<KValue<string,any>>{
+//     var This = Object.entries(this);
+//     var fun = function*(arr: [string, any][]){
+//         for (const item of arr) {
+//             var ret = {
+//                key:  item[0],
+//                value: item[1]
+//             } as KValue<string,any>;
+//             yield ret;
+//         }
+//     }
+//     return new Collection(fun(This));
+// }
+
+
 function compare(a:any, b:any):number{
     var ret:number = 0;
     var ac = a as ICompare<any>;
@@ -227,3 +249,5 @@ function compare(a:any, b:any):number{
 export {
     compare
 }
+
+
