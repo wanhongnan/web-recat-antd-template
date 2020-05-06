@@ -184,6 +184,50 @@ export class Collection<T> implements Iterator<T>{
 }
 
 
+var nmCount:number = 0;
+function *rangeMN(base:number){
+  var n = 0;
+  while(true){
+    n++;
+    var ret = base*n*n + 1;
+    nmCount++;
+    console.log(`nmCount:${nmCount} : ${ret}`)
+    yield ret;
+  }
+}
+
+
+export class CollectionTest{
+    static test1(){
+        console.log("abc")
+        var range = new Collection(rangeMN(5));
+        var ret;
+        // ret = range.take(2).toArray();
+        // console.log(ret);
+        var classes = range.take(15)
+            .where(f=> f % 2 == 0).where(f=> f < 500).take(5)
+            .select((f,i)=>{
+                return {
+                    id:f,
+                    name:`班级${i}`,
+                    students: [`班级${i}:student:${f}-1`,`班级${i}:student:${f}-2`,`班级${i}:student:${f}-3`]
+                }
+            });
+        // ret = classes.toArray();
+        // console.log(ret);
+        var students = classes.expend(f=>f.students).skip(2).take(2);
+        console.log(students.toArray());
+    
+        // for (let i = 0; i < 10; i++) {
+        //   var pageSize = 5;
+        //   var tmp = range.where(f=> f % 2 == 0).skip(i*pageSize).take(pageSize);
+        //   console.log(`page:${i}`);
+        //   console.log(tmp.toArray());
+        // }
+    
+    }
+}
+
 
 
 
